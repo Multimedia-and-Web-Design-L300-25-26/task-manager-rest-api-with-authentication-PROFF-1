@@ -31,6 +31,10 @@ body {
   gap: 16px;
 }
 
+.container.narrow {
+  width: min(860px, 92%);
+}
+
 .hero {
   background: linear-gradient(130deg, #2a3570, #1a2245);
   border: 1px solid var(--border);
@@ -67,6 +71,10 @@ body {
   border-radius: 14px;
   padding: 18px;
   backdrop-filter: blur(4px);
+}
+
+.card h2 {
+  letter-spacing: 0.2px;
 }
 
 h2 {

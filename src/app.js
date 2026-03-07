@@ -17,7 +17,15 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("/", (req, res) => {
-	res.render("index", { pageTitle: "Task Manager" });
+	return res.redirect("/login");
+});
+
+app.get("/login", (req, res) => {
+	return res.render("login", { pageTitle: "Login | Task Manager" });
+});
+
+app.get("/tasks", (req, res) => {
+	return res.render("tasks", { pageTitle: "Tasks | Task Manager" });
 });
 
 app.use("/api/auth", authRoutes);

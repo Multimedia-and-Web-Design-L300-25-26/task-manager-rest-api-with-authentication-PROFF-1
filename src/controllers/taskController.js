@@ -10,7 +10,15 @@ const useInMemoryStore = process.env.NODE_ENV === "test" || process.env.USE_IN_M
 
 export const createTask = async (req, res) => {
   try {
+    if (!req.body || typeof req.body !== "object") {
+      return res.status(400).json({ message: "Invalid request body" });
+    }
+
     const { title, description } = req.body;
+
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
 
     if (!title) {
       return res.status(400).json({ message: "Title is required" });
@@ -26,7 +34,12 @@ export const createTask = async (req, res) => {
 
     return res.status(201).json(task);
   } catch (error) {
-    return res.status(500).json({ message: "Failed to create task" });
+    console.error("Create task error:", error.message);
+
+    const isProduction = process.env.NODE_ENV === "production";
+    return res.status(500).json({
+      message: isProduction ? "Failed to create task" : `Failed to create task: ${error.message}`
+    });
   }
 };
 
