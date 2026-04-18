@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= pageTitle %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <p class="eyebrow">Task Manager REST API</p>
+      <h1>Your Tasks</h1>
+      <p class="subtext">Create, refresh, and delete your tasks with the authenticated account.</p>
+    </header>
+
+    <section class="card">
+      <div class="tasks-header">
+        <h2>Session</h2>
+        <button id="logoutButton" class="danger" type="button">Logout</button>
+      </div>
+      <div class="token-box">
+        <label for="tokenInput">Current JWT Token</label>
+        <textarea id="tokenInput" rows="3" placeholder="Token from login page"></textarea>
+        <button id="saveTokenButton" class="secondary" type="button">Update Token</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Create Task</h2>
+      <form id="taskForm" class="form-row">
+        <input type="text" id="taskTitle" placeholder="Task title" required />
+        <input type="text" id="taskDescription" placeholder="Task description" />
+        <button type="submit">Add Task</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="tasks-header">
+        <h2>Task List</h2>
+        <button id="refreshTasksButton" class="secondary" type="button">Refresh</button>
+      </div>
+      <ul id="taskList" class="task-list"></ul>
+    </section>
+
+    <p id="statusMessage" class="status">Ready.</p>
+  </div>
+
+  <script src="/js/tasks.js"></script>
+</body>
+</html>

@@ -1,18 +1,32 @@
 import mongoose from "mongoose";
 
-
-// Create User schema
-// Fields:
-// - name (String, required)
-// - email (String, required, unique)
-// - password (String, required, minlength 6)
-// - createdAt (default Date.now)
-
-
-
 const userSchema = new mongoose.Schema({
-  // Students implement
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6
+  }
+}, {
+  timestamps: true
 });
+
+userSchema.methods.toJSON = function toJSON() {
+  const user = this.toObject();
+  delete user.password;
+  return user;
+};
 
 const User = mongoose.model("User", userSchema);
 
